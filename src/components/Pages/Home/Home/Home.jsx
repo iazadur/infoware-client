@@ -15,11 +15,11 @@ const Home = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5000/cart')
+        axios.get('https://damp-thicket-32471.herokuapp.com/cart')
             .then(res => setCarts(res.data))
-    }, [ isLoading])
+    }, [isLoading])
     useEffect(() => {
-        axios.get('http://localhost:5000/products')
+        axios.get('https://damp-thicket-32471.herokuapp.com/products')
             .then(res => setProducts(res.data))
     }, [])
 
@@ -27,7 +27,7 @@ const Home = () => {
     const addToCart = (singleProduct, quaintity) => {
         // const exists = carts.find(pd => pd.productid === singleProduct.id);
         // let cartitem = {}
-        
+
         // if (exists) {
         //     exists.quaintity = exists.quaintity + quaintity;
         //     cartitem = { ...exists }
@@ -37,30 +37,30 @@ const Home = () => {
         //     cartitem = { ...singleProduct, quaintity }
         // }
         // if (cartitem) {
-            let cartitem = {}
-            delete singleProduct._id
-            cartitem = { ...singleProduct, quaintity }
-            axios.post('http://localhost:5000/cart', cartitem)
-                .then(res => {
-                    if (res.data.insertedId) {
-                        swal({
-                            title: "Good job!",
-                            text: "You Have the Product add to cart !",
-                            icon: "success",
-                            button:false,
-                            timer:1000
-                            
-                          });
-                          setIsloading(!isLoading)
-                    }
-                })
-        
+        let cartitem = {}
+        delete singleProduct._id
+        cartitem = { ...singleProduct, quaintity }
+        axios.post('https://damp-thicket-32471.herokuapp.com/cart', cartitem)
+            .then(res => {
+                if (res.data.insertedId) {
+                    swal({
+                        title: "Good job!",
+                        text: "You Have the Product add to cart !",
+                        icon: "success",
+                        button: false,
+                        timer: 1500
+
+                    });
+                    setIsloading(!isLoading)
+                }
+            })
+
     }
 
     return (
         <div>
             <Container className="mt-5">
-               
+
                 <Row className="g-4">
                     <Col xs={12} md={8}>
                         <Products products={products} addToCart={addToCart} />

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import swal from 'sweetalert'
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { Badge, ListGroup } from 'react-bootstrap';
 
 
@@ -33,15 +33,17 @@ const Cart = ({ cart, setIsloading, isLoading }) => {
         })
             .then(res => {
                 if (res) {
-                    axios.delete(`http://localhost:5000/cart/${id}`)
+                    axios.delete(`https://damp-thicket-32471.herokuapp.com/cart/${id}`)
                         .then(res => {
                             if (res.data.deletedCount) {
                                 swal({
                                     title: "Good job!",
                                     text: "You Have successfully delete the item !",
                                     icon: "success",
-                                    
-                                  });
+                                    button: false,
+                                    timer: 1500
+
+                                });
                                 setIsloading(!isLoading)
                             }
                         })
