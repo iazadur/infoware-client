@@ -9,7 +9,6 @@ const Home = () => {
 
     const [carts, setCarts] = useState([])
     const [products, setProducts] = useState([])
-    const [update, setUpdate] = useState('')
     const [isLoading, setIsloading] = useState(false)
 
 
@@ -18,7 +17,7 @@ const Home = () => {
     useEffect(() => {
         axios.get('http://localhost:5000/cart')
             .then(res => setCarts(res.data))
-    }, [update, isLoading])
+    }, [ isLoading])
     useEffect(() => {
         axios.get('http://localhost:5000/products')
             .then(res => setProducts(res.data))
@@ -61,7 +60,7 @@ const Home = () => {
     return (
         <div>
             <Container className="mt-5">
-                <div >{update.split("!")[0]}</div>
+               
                 <Row className="g-4">
                     <Col xs={12} md={8}>
                         <Products products={products} addToCart={addToCart} />
