@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import Cart from '../Cart/Cart';
 import Products from '../Products/Products';
+import swal from 'sweetalert'
 
 const Home = () => {
 
@@ -43,7 +44,15 @@ const Home = () => {
             axios.post('http://localhost:5000/cart', cartitem)
                 .then(res => {
                     if (res.data.insertedId) {
-                        setUpdate(`Add to cart successfully! ${res.data.insertedId}`)
+                        swal({
+                            title: "Good job!",
+                            text: "You Have the Product add to cart !",
+                            icon: "success",
+                            button:false,
+                            timer:1000
+                            
+                          });
+                          setIsloading(!isLoading)
                     }
                 })
         
